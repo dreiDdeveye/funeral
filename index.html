@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$FUNERAL - Budget Burials to the Moon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --gold: #c9a227;
+            --gold-light: #e8c547;
+            --purple-dark: #1a0a1a;
+            --white: #f5f5f5;
+            --muted: #888;
+            --bg-white: #ffffff;
+            --light-gray: #f0f0f0;
+            --border-gray: #e0e0e0;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--bg-white);
+            min-height: 100vh;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        /* Funeral Background Image */
+        .funeral-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .funeral-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.08;
+            filter: grayscale(100%);
+        }
+
+        .funeral-bg-placeholder {
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(201, 162, 39, 0.03) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(201, 162, 39, 0.02) 100px,
+                    rgba(201, 162, 39, 0.02) 200px
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bg-placeholder-content {
+            text-align: center;
+            color: var(--border-gray);
+            opacity: 0.5;
+        }
+
+        .bg-placeholder-content .icon {
+            font-size: 8rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .bg-placeholder-content .text {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--black);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .buy-btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+        }
+
+        /* Nav Tabs */
+        .nav-tabs {
+            background: var(--light-gray);
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .nav-tab {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .nav-tab:hover {
+            color: var(--text-dark);
+        }
+
+        .verified-badge {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4ade80;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Booking Card */
+        .booking-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gray);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .booking-card-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .booking-card-bg-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, rgba(0,0,0,0.02) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 2px dashed var(--border-gray);
+            border-radius: 12px;
+        }
+
+        .booking-card-bg-placeholder .video-icon {
+            font-size: 2.5rem;
+            color: var(--muted);
+        }
+
+        .booking-card-bg-placeholder span {
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .booking-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .booking-options {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .booking-option input[type="radio"] {
+            accent-color: var(--gold);
+            width: 18px;
+            height: 18px;
+        }
+
+        .booking-option.promo input[type="checkbox"] {
+            accent-color: var(--gold);
+            width: 18px;
+            height: 18px;
+        }
+
+        .booking-form {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .swap-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            color: var(--muted);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-now-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-now-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+        }
+
+        /* Contract Address */
+        .contract-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-gray);
+        }
+
+        .contract-address {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .contract-address span:first-child {
+            color: var(--gold);
+        }
+
+        .copy-btn {
+            background: var(--black);
+            color: var(--white);
+            border: 1px solid var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--dark-gray);
+            border-color: var(--gold);
+        }
+
+        /* News Ticker */
+        .news-ticker {
+            background: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .news-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .news-text {
+            font-size: 1rem;
+        }
+
+        .news-text strong {
+            color: var(--gold);
+        }
+
+        .news-text a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .news-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--bg-white) 100%);
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="60" font-size="60" text-anchor="middle" fill="%23c9a227" opacity="0.1">⚰️</text></svg>');
+            background-size: 80px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 50%;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-price {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .hero-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .hero-disclaimer {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 350px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--light-gray), var(--bg-white));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .celebrity-face {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--light-gray), var(--bg-white));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 2px solid var(--gold);
+        }
+
+        /* DEX Screener Bar */
+        .dex-bar {
+            background: var(--black);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .time-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        .time-filters span {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .time-filters span:hover,
+        .time-filters span.active {
+            color: var(--gold);
+        }
+
+        .dex-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .dex-logo strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 1rem;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        /* Meme Gallery Carousel - Infinite Auto-scroll */
+        .meme-section {
+            padding: 3rem 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(201, 162, 39, 0.08) 50%, transparent 100%);
+            overflow: hidden;
+        }
+
+        .meme-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .meme-title span {
+            color: var(--gold);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-236px * 8 - 8rem));
+            }
+        }
+
+        .meme-card {
+            min-width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, var(--light-gray), var(--bg-white));
+            border-radius: 8px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-gray);
+            transition: all 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meme-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.2);
+        }
+
+        .meme-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--bg-white) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--muted);
+        }
+
+        .meme-placeholder-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed var(--muted);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .meme-placeholder-text {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--light-gray);
+            border-top: 1px solid var(--border-gray);
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .footer-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .footer-info p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-link.community {
+            background: var(--black);
+            color: var(--white);
+            border: 1px solid var(--black);
+        }
+
+        .footer-link.chart {
+            background: var(--text-dark);
+            color: var(--white);
+        }
+
+        .footer-link.buy {
+            background: var(--gold);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .footer-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-gray);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        /* Floating Candles Animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-candle {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.15;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .booking-form {
+                flex-direction: column;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Funeral Background Image -->
+    <div class="funeral-bg">
+        <!-- Replace the placeholder div below with: <img src="your-funeral-image.jpg" class="funeral-bg-image" alt=""> -->
+        <div class="funeral-bg-placeholder">
+            <div class="bg-placeholder-content">
+                <span class="icon">⚰️</span>
+                <span class="text">Background Image Placeholder</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-candle" style="left: 10%; animation-delay: 0s;">🕯️</div>
+        <div class="floating-candle" style="left: 25%; animation-delay: 4s;">⚰️</div>
+        <div class="floating-candle" style="left: 40%; animation-delay: 8s;">🌹</div>
+        <div class="floating-candle" style="left: 55%; animation-delay: 2s;">🕯️</div>
+        <div class="floating-candle" style="left: 70%; animation-delay: 6s;">💀</div>
+        <div class="floating-candle" style="left: 85%; animation-delay: 10s;">⚰️</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">⚰️</div>
+            <span class="logo-text">FUNERAL</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Meme Gallery</a>
+            <a href="#">𝕏 Community</a>
+            <a href="#" class="buy-btn">Buy $Funeral</a>
+        </nav>
+    </header>
+
+    <!-- Nav Tabs -->
+    <div class="nav-tabs">
+        <div class="nav-tab active">
+            <span>⚰️</span>
+            <span>BURIALS</span>
+        </div>
+        <div class="nav-tab">
+            <span>🪦</span>
+            <span>HEADSTONES</span>
+        </div>
+        <div class="nav-tab">
+            <span>🚗</span>
+            <span>HEARSE</span>
+        </div>
+        <div class="nav-tab">
+            <span>🌹</span>
+            <span>FLOWERS</span>
+        </div>
+        <div class="verified-badge">
+            <span>✓</span>
+            <span>Verified</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Booking Card -->
+        <div class="booking-card">
+            <!-- Video Background Placeholder - Replace with: <video src="your-video.mp4" autoplay loop muted playsinline></video> -->
+<div class="booking-card-bg">
+    <video src="funeral-clip.mp4" autoplay loop muted playsinline></video>
+</div>
+
+            <div class="booking-card-content">
+                <div class="booking-options">
+                    <label class="booking-option">
+                        <input type="radio" name="trip" checked>
+                        <span>One Way Only</span>
+                    </label>
+                    <label class="booking-option">
+                        <input type="radio" name="trip">
+                        <span>Cremation</span>
+                    </label>
+                    <label class="booking-option promo">
+                        <input type="checkbox">
+                        <span>Promo code</span>
+                    </label>
+                </div>
+
+                <div class="booking-form">
+                    <div class="form-group">
+                        <label>From</label>
+                        <input type="text" value="Life" readonly>
+                    </div>
+                    <div class="swap-icon">⇄</div>
+                    <div class="form-group">
+                        <label>To</label>
+                        <input type="text" value="Moon (Afterlife)" readonly>
+                    </div>
+                    <button class="book-now-btn">Rest Now</button>
+                </div>
+
+                <div class="contract-row">
+                    <div class="contract-address">
+                        <span>CA:</span>
+                        <span>D34THzqfeasqeEKCEQxX89gbK5dXvkYegNxHmnZWjTpJWY</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyCA()">
+                        <span>📋</span>
+                        <span>Copy CA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Ticker -->
+        <div class="news-ticker">
+            <div class="news-icon">ℹ️</div>
+            <div class="news-text">
+                <strong>Death is bullish!</strong> Rumors say the grim reaper might buy it. <a href="#">Read more</a>
+            </div>
+        </div>
+
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+            <div class="hero-content">
+                <h1 class="hero-title">REST NOW,<br>MOON LATER</h1>
+                <div class="hero-price">FROM $0.00001</div>
+                <div class="hero-cta">
+                    <button class="hero-btn">Buy Now</button>
+                    <span class="hero-disclaimer">Grim Reaper approved. T&C's apply.</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                ⚰️
+                <div class="celebrity-face">💀</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- DEX Bar -->
+    <div class="dex-bar">
+        <div class="time-filters">
+            <span>5y</span>
+            <span>1y</span>
+            <span>6m</span>
+            <span>3m</span>
+            <span class="active">1m</span>
+            <span>5d</span>
+            <span>1d</span>
+        </div>
+        <div class="dex-logo">
+            Tracked by <strong>DEXSCREENER</strong>
+        </div>
+        <div class="chart-controls">
+            <span>19:21:12 (UTC+8)</span>
+            <span>%</span>
+            <span>log</span>
+            <span>auto</span>
+        </div>
+    </div>
+
+    <!-- Meme Gallery Carousel -->
+    <section class="meme-section">
+        <h2 class="meme-title"><span>$Funeral</span> Memes</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- First set -->
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 1</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 2</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 3</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 4</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 5</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 6</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 7</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 8</span>
+                    </div>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 1</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 2</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 3</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 4</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 5</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 6</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 7</span>
+                    </div>
+                </div>
+                <div class="meme-card">
+                    <div class="meme-placeholder">
+                        <div class="meme-placeholder-icon">🖼️</div>
+                        <span class="meme-placeholder-text">Meme 8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">⚰️</div>
+                <div class="footer-info">
+                    <h3>Funeral</h3>
+                    <p>Budget burials to the moon</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link community">𝕏 Community</a>
+                <a href="#" class="footer-link chart">Chart</a>
+                <a href="#" class="footer-link buy">Buy ↗</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer">
+            © 2025 $Funeral. Not affiliated with any actual funeral homes. DYOR. NFA. RIP.
+        </div>
+    </footer>
+
+    <script>
+        function copyCA() {
+            const ca = 'D34THzqfeasqeEKCEQxX89gbK5dXvkYegNxHmnZWjTpJWY';
+            navigator.clipboard.writeText(ca).then(() => {
+                const btn = document.querySelector('.copy-btn span:last-child');
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy CA';
+                }, 2000);
+            });
+        }
+
+        // Add more floating elements dynamically
+        const floatingContainer = document.querySelector('.floating-elements');
+        const emojis = ['🕯️', '⚰️', '🌹', '💀', '👻', '🪦', '☠️'];
+        
+        for (let i = 0; i < 10; i++) {
+            const el = document.createElement('div');
+            el.className = 'floating-candle';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.animationDelay = Math.random() * 20 + 's';
+            el.style.animationDuration = (15 + Math.random() * 10) + 's';
+            floatingContainer.appendChild(el);
+        }
+    </script>
+</body>
+</html>
