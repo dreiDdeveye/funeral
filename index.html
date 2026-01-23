@@ -19,10 +19,10 @@
             --gold: #c9a227;
             --gold-light: #e8c547;
             --purple-dark: #1a0a1a;
-            --white: #f5f5f5;
+            --white: #ffffff;
             --muted: #888;
             --bg-white: #ffffff;
-            --light-gray: #f0f0f0;
+            --light-gray: #ffffff;
             --border-gray: #e0e0e0;
             --text-dark: #1a1a1a;
         }
@@ -35,7 +35,7 @@
             position: relative;
         }
 
-        /* Funeral Background Image */
+        /* Funeral Background */
         .funeral-bg {
             position: fixed;
             top: 0;
@@ -44,51 +44,7 @@
             height: 100%;
             z-index: -2;
             pointer-events: none;
-        }
-
-        .funeral-bg-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.08;
-            filter: grayscale(100%);
-        }
-
-        .funeral-bg-placeholder {
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(135deg, rgba(201, 162, 39, 0.03) 0%, transparent 50%),
-                linear-gradient(225deg, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(201, 162, 39, 0.02) 100px,
-                    rgba(201, 162, 39, 0.02) 200px
-                );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .bg-placeholder-content {
-            text-align: center;
-            color: var(--border-gray);
-            opacity: 0.5;
-        }
-
-        .bg-placeholder-content .icon {
-            font-size: 8rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .bg-placeholder-content .text {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            background: var(--bg-white);
         }
 
         /* Header */
@@ -202,6 +158,26 @@
 
         /* Main Content */
         .main-content {
+            width: 100%;
+            position: relative;
+            background: url('hero-bg.png') center center / cover no-repeat;
+            background-position: center 20%;
+
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .main-content-inner {
+            position: relative;
+            z-index: 1;
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -209,66 +185,12 @@
 
         /* Booking Card */
         .booking-card {
-            background: var(--light-gray);
+            background: rgba(255, 255, 255, 0.75);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 1.5rem;
             border: 1px solid var(--border-gray);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .booking-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .booking-card-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.5;
-        }
-
-        .booking-card-bg-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, rgba(0,0,0,0.02) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border: 2px dashed var(--border-gray);
-            border-radius: 12px;
-        }
-
-        .booking-card-bg-placeholder .video-icon {
-            font-size: 2.5rem;
-            color: var(--muted);
-        }
-
-        .booking-card-bg-placeholder span {
-            color: var(--muted);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: rgba(255,255,255,0.8);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-
-        .booking-card-content {
-            position: relative;
-            z-index: 1;
         }
 
         .booking-options {
@@ -398,7 +320,7 @@
 
         /* News Ticker */
         .news-ticker {
-            background: var(--light-gray);
+            background: rgba(255, 255, 255, 0.75);
             border: 1px solid var(--border-gray);
             border-radius: 8px;
             padding: 1rem 1.5rem;
@@ -439,7 +361,7 @@
 
         /* Hero Banner */
         .hero-banner {
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--bg-white) 100%);
+           background: rgba(255, 255, 255, 0.75);
             border-radius: 12px;
             padding: 3rem;
             position: relative;
@@ -448,22 +370,90 @@
             margin-bottom: 1.5rem;
         }
 
-        .hero-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="60" font-size="60" text-anchor="middle" fill="%23c9a227" opacity="0.1">⚰️</text></svg>');
-            background-size: 80px;
-            opacity: 0.3;
-        }
-
         .hero-content {
             position: relative;
             z-index: 1;
+        }
+
+        /* Tab Content Sections */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Hearse Section */
+        .hearse-section {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hearse-image {
+            flex: 1;
             max-width: 50%;
+        }
+
+        .hearse-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .hearse-pricing {
+            flex: 1;
+        }
+
+        .hearse-pricing h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hearse-pricing ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hearse-pricing li {
+            font-size: 1.2rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hearse-pricing li:last-child {
+            border-bottom: none;
+        }
+
+        .hearse-pricing .price {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .hearse-pricing .package-name {
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .hearse-section {
+                flex-direction: column;
+            }
+
+            .hearse-image {
+                max-width: 100%;
+            }
         }
 
         .hero-title {
@@ -521,11 +511,10 @@
         .hero-image {
             position: absolute;
             right: 3rem;
-            top: 50%;
+            top: 10%;
             transform: translateY(-50%);
             width: 350px;
-            height: 200px;
-            background: linear-gradient(45deg, var(--light-gray), var(--bg-white));
+            height: 200px;          
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -533,6 +522,7 @@
             font-size: 5rem;
             border: 2px solid var(--gold);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            z-index: 3;
         }
 
         .celebrity-face {
@@ -548,6 +538,7 @@
             justify-content: center;
             font-size: 2.5rem;
             border: 2px solid var(--gold);
+            z-index: 3;
         }
 
         /* DEX Screener Bar */
@@ -644,6 +635,12 @@
                 transform: translateX(calc(-236px * 8 - 8rem));
             }
         }
+
+        .meme-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
         .meme-card {
             min-width: 220px;
@@ -849,16 +846,8 @@
     </style>
 </head>
 <body>
-    <!-- Funeral Background Image -->
-    <div class="funeral-bg">
-        <!-- Replace the placeholder div below with: <img src="your-funeral-image.jpg" class="funeral-bg-image" alt=""> -->
-        <div class="funeral-bg-placeholder">
-            <div class="bg-placeholder-content">
-                <span class="icon">⚰️</span>
-                <span class="text">Background Image Placeholder</span>
-            </div>
-        </div>
-    </div>
+    <!-- Funeral Background -->
+    <div class="funeral-bg"></div>
 
     <!-- Floating Background Elements -->
     <div class="floating-elements">
@@ -885,19 +874,19 @@
 
     <!-- Nav Tabs -->
     <div class="nav-tabs">
-        <div class="nav-tab active">
+        <div class="nav-tab active" onclick="showTab('burials')">
             <span>⚰️</span>
             <span>BURIALS</span>
         </div>
-        <div class="nav-tab">
+        <div class="nav-tab" onclick="showTab('headstones')">
             <span>🪦</span>
             <span>HEADSTONES</span>
         </div>
-        <div class="nav-tab">
+        <div class="nav-tab" onclick="showTab('hearse')">
             <span>🚗</span>
             <span>HEARSE</span>
         </div>
-        <div class="nav-tab">
+        <div class="nav-tab" onclick="showTab('flowers')">
             <span>🌹</span>
             <span>FLOWERS</span>
         </div>
@@ -909,76 +898,124 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Booking Card -->
-        <div class="booking-card">
-            <!-- Video Background Placeholder - Replace with: <video src="your-video.mp4" autoplay loop muted playsinline></video> -->
-<div class="booking-card-bg">
-    <video src="funeral-clip.mp4" autoplay loop muted playsinline></video>
-</div>
+        <div class="main-content-inner">
+            <!-- Burials Tab Content (Default) -->
+            <div id="burials" class="tab-content active">
+                <!-- Booking Card -->
+                <div class="booking-card">
+                    <div class="booking-options">
+                        <label class="booking-option">
+                            <input type="radio" name="trip" checked>
+                            <span>One Way Only</span>
+                        </label>
+                        <label class="booking-option">
+                            <input type="radio" name="trip">
+                            <span>Cremation</span>
+                        </label>
+                        <label class="booking-option promo">
+                            <input type="checkbox">
+                            <span>Promo code</span>
+                        </label>
+                    </div>
 
-            <div class="booking-card-content">
-                <div class="booking-options">
-                    <label class="booking-option">
-                        <input type="radio" name="trip" checked>
-                        <span>One Way Only</span>
-                    </label>
-                    <label class="booking-option">
-                        <input type="radio" name="trip">
-                        <span>Cremation</span>
-                    </label>
-                    <label class="booking-option promo">
-                        <input type="checkbox">
-                        <span>Promo code</span>
-                    </label>
+                    <div class="booking-form">
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="text" value="Life" readonly>
+                        </div>
+                        <div class="swap-icon">⇄</div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="text" value="Moon (R.I.P)" readonly>
+                        </div>
+                        <button class="book-now-btn">Rest Now</button>
+                    </div>
+
+                    <div class="contract-row">
+                        <div class="contract-address">
+                            <span>CA:</span>
+                            <span>D34THzqfeasqeEKCEQxX89gbK5dXvkYegNxHmnZWjTpJWY</span>
+                        </div>
+                        <button class="copy-btn" onclick="copyCA()">
+                            <span>📋</span>
+                            <span>Copy CA</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="booking-form">
-                    <div class="form-group">
-                        <label>From</label>
-                        <input type="text" value="Life" readonly>
+                <!-- News Ticker -->
+                <div class="news-ticker">
+                    <div class="news-icon">ℹ️</div>
+                    <div class="news-text">
+                        <strong>Death is bullish!</strong> Rumors say the grim reaper might buy it. <a href="#">Read more</a>
                     </div>
-                    <div class="swap-icon">⇄</div>
-                    <div class="form-group">
-                        <label>To</label>
-                        <input type="text" value="Moon (Afterlife)" readonly>
-                    </div>
-                    <button class="book-now-btn">Rest Now</button>
                 </div>
 
-                <div class="contract-row">
-                    <div class="contract-address">
-                        <span>CA:</span>
-                        <span>D34THzqfeasqeEKCEQxX89gbK5dXvkYegNxHmnZWjTpJWY</span>
+                <!-- Hero Banner -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <h1 class="hero-title">MOON NOW,,<br>DEAD LATER</h1>
+                        <div class="hero-price">FROM $0.00001</div>
+                        <div class="hero-cta">
+                            <button class="hero-btn">Buy Now</button>
+                            <span class="hero-disclaimer">Grim Reaper approved. T&C's apply.</span>
+                        </div>
                     </div>
-                    <button class="copy-btn" onclick="copyCA()">
-                        <span>📋</span>
-                        <span>Copy CA</span>
-                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- News Ticker -->
-        <div class="news-ticker">
-            <div class="news-icon">ℹ️</div>
-            <div class="news-text">
-                <strong>Death is bullish!</strong> Rumors say the grim reaper might buy it. <a href="#">Read more</a>
-            </div>
-        </div>
-
-        <!-- Hero Banner -->
-        <div class="hero-banner">
-            <div class="hero-content">
-                <h1 class="hero-title">REST NOW,<br>MOON LATER</h1>
-                <div class="hero-price">FROM $0.00001</div>
-                <div class="hero-cta">
-                    <button class="hero-btn">Buy Now</button>
-                    <span class="hero-disclaimer">Grim Reaper approved. T&C's apply.</span>
+            <!-- Hearse Tab Content -->
+            <div id="hearse" class="tab-content">
+                <div class="hearse-section">
+                    <div class="hearse-image">
+                        <img src="hearse.jpg" alt="Hearse">
+                    </div>
+                    <div class="hearse-pricing">
+                        <h2>🚗 Hearse Services</h2>
+                        <ul>
+                            <li>
+                                <span class="package-name">Standard Death</span>
+                                <span class="price">0.12 SOL</span>
+                            </li>
+                            <li>
+                                <span class="package-name">Deluxe Corpse Transport</span>
+                                <span class="price">0.28 SOL</span>
+                            </li>
+                            <li>
+                                <span class="package-name">Closed-Casket Upgrade</span>
+                                <span class="price">0.04 SOL</span>
+                            </li>
+                            <li>
+                                <span class="package-name">Weekend Surge</span>
+                                <span class="price">+0.09 SOL</span>
+                            </li>
+                            <li>
+                                <span class="package-name">"He Ain't Coming Back" Package</span>
+                                <span class="price">0.52 SOL</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                ⚰️
-                <div class="celebrity-face">💀</div>
+
+            <!-- Headstones Tab Content -->
+            <div id="headstones" class="tab-content">
+                <div class="hearse-section">
+                    <div class="hearse-pricing" style="width: 100%; text-align: center;">
+                        <h2>🪦 Headstones</h2>
+                        <p style="color: var(--muted); font-size: 1.2rem;">Coming soon...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flowers Tab Content -->
+            <div id="flowers" class="tab-content">
+                <div class="hearse-section">
+                    <div class="hearse-pricing" style="width: 100%; text-align: center;">
+                        <h2>🌹 Flowers</h2>
+                        <p style="color: var(--muted); font-size: 1.2rem;">Coming soon...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -1006,111 +1043,28 @@
     </div>
 
     <!-- Meme Gallery Carousel -->
-    <section class="meme-section">
-        <h2 class="meme-title"><span>$Funeral</span> Memes</h2>
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <!-- First set -->
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 1</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 2</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 3</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 4</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 5</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 6</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 7</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 8</span>
-                    </div>
-                </div>
-                <!-- Duplicate set for seamless loop -->
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 1</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 2</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 3</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 4</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 5</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 6</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 7</span>
-                    </div>
-                </div>
-                <div class="meme-card">
-                    <div class="meme-placeholder">
-                        <div class="meme-placeholder-icon">🖼️</div>
-                        <span class="meme-placeholder-text">Meme 8</span>
-                    </div>
-                </div>
-            </div>
+<!-- Meme Gallery Carousel -->
+<section class="meme-section">
+    <h2 class="meme-title"><span>$Funeral</span> Memes</h2>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <!-- First set -->
+            <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
+            <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
+            <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
+            <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
+            <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
+            <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
+            <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
+            <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
+            <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
+            <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
+            <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1143,6 +1097,25 @@
                     btn.textContent = 'Copy CA';
                 }, 2000);
             });
+        }
+
+        // Tab switching function
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.currentTarget.classList.add('active');
         }
 
         // Add more floating elements dynamically
