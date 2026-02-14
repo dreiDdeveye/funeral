@@ -162,7 +162,6 @@
             position: relative;
             background: url('hero-bg.png') center center / cover no-repeat;
             background-position: center 20%;
-
         }
 
         .main-content::before {
@@ -361,7 +360,7 @@
 
         /* Hero Banner */
         .hero-banner {
-           background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.75);
             border-radius: 12px;
             padding: 3rem;
             position: relative;
@@ -446,16 +445,6 @@
             color: var(--text-dark);
         }
 
-        @media (max-width: 768px) {
-            .hearse-section {
-                flex-direction: column;
-            }
-
-            .hearse-image {
-                max-width: 100%;
-            }
-        }
-
         .hero-title {
             font-family: 'Cinzel', serif;
             font-size: 2.8rem;
@@ -508,37 +497,189 @@
             font-style: italic;
         }
 
-        .hero-image {
-            position: absolute;
-            right: 3rem;
-            top: 10%;
-            transform: translateY(-50%);
-            width: 350px;
-            height: 200px;          
-            border-radius: 8px;
+        /* Token Death Certificate */
+        .certificate-section {
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 5rem;
-            border: 2px solid var(--gold);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            z-index: 3;
+            padding: 1rem;
         }
 
-        .celebrity-face {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--light-gray), var(--bg-white));
-            border-radius: 50%;
+        .certificate {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-gray);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .certificate-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .certificate-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .certificate-icon {
+            font-size: 2rem;
+        }
+
+        .certificate-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .certificate-field label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-field input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .generate-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .certificate-result {
+            margin-top: 2rem;
+        }
+
+        .certificate-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .cert-border {
             border: 2px solid var(--gold);
-            z-index: 3;
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .cert-inner {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cert-inner h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .cert-token-name {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-details {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .cert-row:last-child {
+            border-bottom: none;
+        }
+
+        .cert-label {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .cert-value {
+            color: var(--white);
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .cert-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gold);
+        }
+
+        .cert-footer p {
+            margin: 0.5rem 0;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .cert-date {
+            font-size: 0.85rem;
+        }
+
+        .cert-stamp {
+            color: var(--gold) !important;
+            font-family: 'Cinzel', serif;
+            font-style: normal !important;
+            font-weight: 700;
+            margin-top: 1rem !important;
+        }
+
+        .share-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--black);
+            color: var(--white);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .share-btn:hover {
+            background: var(--gold);
+            color: var(--black);
         }
 
         /* DEX Screener Bar */
@@ -632,15 +773,15 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-236px * 8 - 8rem));
+                transform: translateX(calc(-236px * 6 - 6rem));
             }
         }
 
         .meme-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .meme-card {
             min-width: 220px;
@@ -663,35 +804,6 @@
             transform: scale(1.05);
             border-color: var(--gold);
             box-shadow: 0 10px 30px rgba(201, 162, 39, 0.2);
-        }
-
-        .meme-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--bg-white) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: var(--muted);
-        }
-
-        .meme-placeholder-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px dashed var(--muted);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .meme-placeholder-text {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* Footer */
@@ -833,14 +945,28 @@
                 max-width: 100%;
             }
 
-            .hero-image {
-                display: none;
+            .hearse-section {
+                flex-direction: column;
+            }
+
+            .hearse-image {
+                max-width: 100%;
             }
 
             .footer-content {
                 flex-direction: column;
                 gap: 1.5rem;
                 text-align: center;
+            }
+
+            .cert-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .cert-value {
+                max-width: 100%;
+                text-align: left;
             }
         }
     </style>
@@ -860,17 +986,19 @@
     </div>
 
     <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <div class="logo-icon">⚰️</div>
-            <span class="logo-text">FUNERAL</span>
+<header class="header">
+    <div class="logo">
+        <div class="logo-icon">
+            <img src="logo.png" alt="Funeral Logo" width="40" height="40" />
         </div>
-        <nav class="nav-links">
-            <a href="#">Meme Gallery</a>
-            <a href="#">𝕏 Community</a>
-            <a href="#" class="buy-btn">Buy $Funeral</a>
-        </nav>
-    </header>
+        <span class="logo-text">FUNERAL</span>
+    </div>
+    <nav class="nav-links">
+        <a href="#">Meme Gallery</a>
+        <a href="#">𝕏 Community</a>
+        <a href="#" class="buy-btn">Buy $Funeral</a>
+    </nav>
+</header>
 
     <!-- Nav Tabs -->
     <div class="nav-tabs">
@@ -886,9 +1014,9 @@
             <span>🚗</span>
             <span>HEARSE</span>
         </div>
-        <div class="nav-tab" onclick="showTab('flowers')">
-            <span>🌹</span>
-            <span>FLOWERS</span>
+        <div class="nav-tab" onclick="showTab('deathcert')">
+            <span>📜</span>
+            <span>DEATH CERT</span>
         </div>
         <div class="verified-badge">
             <span>✓</span>
@@ -954,7 +1082,7 @@
                 <!-- Hero Banner -->
                 <div class="hero-banner">
                     <div class="hero-content">
-                        <h1 class="hero-title">MOON NOW,,<br>DEAD LATER</h1>
+                        <h1 class="hero-title">MOON NOW,<br>DEAD LATER</h1>
                         <div class="hero-price">FROM $0.00001</div>
                         <div class="hero-cta">
                             <button class="hero-btn">Buy Now</button>
@@ -1008,12 +1136,63 @@
                 </div>
             </div>
 
-            <!-- Flowers Tab Content -->
-            <div id="flowers" class="tab-content">
-                <div class="hearse-section">
-                    <div class="hearse-pricing" style="width: 100%; text-align: center;">
-                        <h2>🌹 Flowers</h2>
-                        <p style="color: var(--muted); font-size: 1.2rem;">Coming soon...</p>
+            <!-- Death Certificate Tab Content -->
+            <div id="deathcert" class="tab-content">
+                <div class="certificate-section">
+                    <div class="certificate">
+                        <div class="certificate-header">
+                            <span class="certificate-icon">💀</span>
+                            <h2>TOKEN DEATH CERTIFICATE</h2>
+                            <span class="certificate-icon">💀</span>
+                        </div>
+                        
+                        <div class="certificate-body">
+                            <div class="certificate-field">
+                                <label>Token Name</label>
+                                <input type="text" id="token-name" placeholder="Enter token name...">
+                            </div>
+                            
+                            <button class="generate-btn" onclick="generateCertificate()">
+                                ⚰️ Generate Death Certificate
+                            </button>
+                            
+                            <div class="certificate-result" id="certificate-result" style="display: none;">
+                                <div class="certificate-card" id="certificate-card">
+                                    <div class="cert-border">
+                                        <div class="cert-inner">
+                                            <h3>☠️ OFFICIAL DEATH CERTIFICATE ☠️</h3>
+                                            <p class="cert-token-name" id="cert-token-name">$TOKENNAME</p>
+                                            
+                                            <div class="cert-details">
+                                                <div class="cert-row">
+                                                    <span class="cert-label">📅 Launch Year:</span>
+                                                    <span class="cert-value" id="cert-launch">2024</span>
+                                                </div>
+                                                <div class="cert-row">
+                                                    <span class="cert-label">📈 Peak Hype Level:</span>
+                                                    <span class="cert-value" id="cert-hype">MAXIMUM FOMO</span>
+                                                </div>
+                                                <div class="cert-row">
+                                                    <span class="cert-label">💀 Cause of Death:</span>
+                                                    <span class="cert-value" id="cert-cause">Rug Pull</span>
+                                                </div>
+                                                <div class="cert-row">
+                                                    <span class="cert-label">🗣️ Famous Last Words:</span>
+                                                    <span class="cert-value" id="cert-words">"To the moon!"</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="cert-footer">
+                                                <p>Rest in Pieces</p>
+                                                <p class="cert-date" id="cert-date">January 24, 2026</p>
+                                                <p class="cert-stamp">🪦 CERTIFIED BY $FUNERAL 🪦</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="share-btn" onclick="shareCertificate()">📸 Screenshot & Share</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1043,28 +1222,27 @@
     </div>
 
     <!-- Meme Gallery Carousel -->
-<!-- Meme Gallery Carousel -->
-<section class="meme-section">
-    <h2 class="meme-title"><span>$Funeral</span> Memes</h2>
-    <div class="carousel-container">
-        <div class="carousel-track">
-            <!-- First set -->
-            <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
-            <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
-            <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
-            <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
-            <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
-            <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
-            <!-- Duplicate set for seamless loop -->
-            <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
-            <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
-            <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
-            <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
-            <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
-            <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
+    <section class="meme-section">
+        <h2 class="meme-title"><span>$Funeral</span> Memes</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- First set -->
+                <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
+                <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
+                <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
+                <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
+                <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
+                <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="meme-card"><img src="meme1.jpg" alt="Meme 1"></div>
+                <div class="meme-card"><img src="meme2.jpg" alt="Meme 2"></div>
+                <div class="meme-card"><img src="meme3.jpg" alt="Meme 3"></div>
+                <div class="meme-card"><img src="meme4.jpg" alt="Meme 4"></div>
+                <div class="meme-card"><img src="meme5.jpg" alt="Meme 5"></div>
+                <div class="meme-card"><img src="meme6.jpg" alt="Meme 6"></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1076,11 +1254,11 @@
                     <p>Budget burials to the moon</p>
                 </div>
             </div>
-            <div class="footer-links">
-                <a href="#" class="footer-link community">𝕏 Community</a>
-                <a href="#" class="footer-link chart">Chart</a>
-                <a href="#" class="footer-link buy">Buy ↗</a>
-            </div>
+<div class="footer-links">
+    <a href="https://x.com/i/communities/2022471544765845583/?fbclid=IwY2xjawP8pXVleHRuA2FlbQIxMABicmlkETJickZWWTRTRGhWTjk0enBzc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHmC6_L-gP9OVwT1MF6itB_77Jjjl_vCqZJwbj4qDmi6J0WogYoRjy5reVoGE_aem_lFBhN5xa7FI7DtxJ5ZZslw" target="_blank" rel="noopener noreferrer" class="footer-link community">𝕏 Community</a>
+    <a href="#" class="footer-link chart">Chart</a>
+    <a href="#" class="footer-link buy">Buy ↗</a>
+</div>
         </div>
         <div class="footer-disclaimer">
             © 2025 $Funeral. Not affiliated with any actual funeral homes. DYOR. NFA. RIP.
@@ -1116,6 +1294,85 @@
 
             // Add active class to clicked tab
             event.currentTarget.classList.add('active');
+        }
+
+        // Certificate Generator Data
+        const launchYears = ['2021', '2022', '2023', '2024', '2025'];
+        const hypelevels = [
+            'MAXIMUM FOMO',
+            'DIAMOND HANDS ONLY',
+            '100X GUARANTEED',
+            'MOON IMMINENT',
+            'APE OR DIE',
+            'GENERATIONAL WEALTH',
+            'WAGMI ENERGY',
+            'TO VALHALLA'
+        ];
+        const causesOfDeath = [
+            'Rug Pull',
+            'Dev Abandoned',
+            'Liquidity Drained',
+            'Community Collapse',
+            'Whale Dump',
+            'Contract Exploit',
+            'Zero Volume',
+            'Twitter Deleted',
+            'Discord Nuked',
+            'Team Doxxed & Ran',
+            'Elon Didn\'t Tweet',
+            'Bear Market',
+            'Gas Fees Too High',
+            'Nobody Bought The Dip'
+        ];
+        const lastWords = [
+            '"To the moon!"',
+            '"HODL!"',
+            '"This is just a healthy correction"',
+            '"Dev is still working"',
+            '"Buy the dip!"',
+            '"Trust the process"',
+            '"Wen marketing?"',
+            '"It\'s not a loss if you don\'t sell"',
+            '"We\'re early!"',
+            '"Diamond hands only!"',
+            '"NFA but this is financial advice"',
+            '"WAGMI... right?"',
+            '"Floor is lava"',
+            '"Zoom out bro"'
+        ];
+
+        function generateCertificate() {
+            const tokenName = document.getElementById('token-name').value.trim();
+            
+            if (!tokenName) {
+                alert('Please enter a token name!');
+                return;
+            }
+            
+            // Generate random values
+            const launch = launchYears[Math.floor(Math.random() * launchYears.length)];
+            const hype = hypelevels[Math.floor(Math.random() * hypelevels.length)];
+            const cause = causesOfDeath[Math.floor(Math.random() * causesOfDeath.length)];
+            const words = lastWords[Math.floor(Math.random() * lastWords.length)];
+            
+            // Update certificate
+            document.getElementById('cert-token-name').textContent = '$' + tokenName.toUpperCase();
+            document.getElementById('cert-launch').textContent = launch;
+            document.getElementById('cert-hype').textContent = hype;
+            document.getElementById('cert-cause').textContent = cause;
+            document.getElementById('cert-words').textContent = words;
+            document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Show result
+            document.getElementById('certificate-result').style.display = 'block';
+        }
+
+        function shareCertificate() {
+            alert('📸 Take a screenshot and share on Twitter!\n\nTag @FuneralToken for a RT! 🪦');
         }
 
         // Add more floating elements dynamically
